@@ -3,11 +3,9 @@ import Book from './Book'
 
 const Recommended = (props) => {
     return (
-        <div className="container">
-            <div className="row">
-                <div className="books">
+        <>
                     {props.books
-                        .filter((book) => { return book.id != props.id; })
+                        .filter((book) => { return (parseFloat(book.id) !== parseFloat(props.id)) && (book.rating == 5); })
                         .slice(0,4)
                         .map((book) => {
                             console.log("recommended", book.title);
@@ -15,9 +13,7 @@ const Recommended = (props) => {
                             originalPrice={book.originalPrice} salePrice={book.salePrice} />
                         })
                     }
-                </div>
-            </div>
-        </div>
+              </>
     )
 }
 

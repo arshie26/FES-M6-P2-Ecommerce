@@ -6,7 +6,7 @@ import { books } from '../data.js'
 
 const Books = (props) => {
 
-    let [ books, updateBooks ] = useState(props.books);
+    const [ books, updateBooks ] = useState(props.books);
 
     console.log("In Books books length is ", books.length);
 
