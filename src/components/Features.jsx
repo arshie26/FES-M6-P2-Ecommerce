@@ -70,7 +70,7 @@ const Features = () => {
                         .slice(0,4)
                         .map((book) => {
                         return (
-                            <Book key={book.id} url={book.url} title={book.title} rateFunction={createRating}
+                            <Book key={book.id} id={book.id} url={book.url} title={book.title} rateFunction={createRating}
                             rating={book.rating} salePrice={book.salePrice} originalPrice={book.originalPrice} />
                         )
                     })}

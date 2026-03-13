@@ -13,7 +13,7 @@ const Discounted = () => {
                             .slice(0, 8)
                             .map((book) => {
                                 return (
-                                    <Book key={book.id} title={book.title} url={book.url} rating={book.rating}
+                                    <Book key={book.id} id={book.id} title={book.title} url={book.url} rating={book.rating}
                                     salePrice={book.salePrice} originalPrice={book.originalPrice} />
                                 )
                             })
