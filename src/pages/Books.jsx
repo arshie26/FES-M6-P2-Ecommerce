@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import Features from '../components/Features'
 import Book from '../components/Book.jsx';
 import { books } from '../data.js'
+import Filter from '../components/Filter.jsx'
 
 const Books = (props) => {
 
@@ -22,7 +23,7 @@ const Books = (props) => {
 
             /* PREVIOUS ATTEMPTS: 
             updateBooks(books); USING STATE VARIABLE TO UPDATE STATE
-            SETTING UPDATED ARRAY TO A NEW VARIABLE AND UPDATING STATE
+            SORT AND UPDATE ARRAY, SET TO A NEW VARIABLE AND UPDATE STATE
             newBooks = books.sort((a, b) => {
                 return (a.salePrice || a.originalPrice) - (b.salePrice || b.originalPrice)
             });
@@ -54,12 +55,7 @@ const Books = (props) => {
                         <div className="row">
                             <div className="books__header">
                                 <h2 className="section__title books__header--title">All Books</h2>
-                                <select id="filter" defaultValue="DEFAULT" onChange={(event) => filterBooks(event.target.value)}>
-                                    <option value="DEFAULT" disabled >Sort</option>
-                                    <option value="LOW_TO_HIGH">Price, Low to High</option>
-                                    <option value="HIGH_TO_LOW">Price, High to Low</option>
-                                    <option value="RATING">Rating</option>
-                                </select>
+                                <Filter filterBooks={filterBooks} />
                             </div>
                             <div className="books">
                                 {books.map((book) => {

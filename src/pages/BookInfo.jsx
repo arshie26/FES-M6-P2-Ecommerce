@@ -9,61 +9,39 @@ import Recommended from '../components/Recommended.jsx';
 
 const BookInfo = (props) => {
     const { id } = useParams();
+    
+    const book = props.books.find((book) => {return parseFloat(book.id) === parseFloat(id)});
 
-    const [disableAdd, setDisable] = useState(props.disableAdd);
-    let book = props.books.find((book) => {return parseFloat(book.id) === parseFloat(id)});
+    /***************************************** */
+    /* TOGGLE VIEW CART BUTTON: DEFAULT METHOD */
+    function bookExists(book){
+
+        // FINDS BOOK INDEX IN CART
+        let bookIndex = props.cart.findIndex(bookInCart => parseFloat(bookInCart.id) === parseFloat(book.id));
+        
+        // IF BOOK EXISTS IN CART, RETURN TRUE
+        if(bookIndex > -1){
+          return true;
+        }
+        // OTHERWISE, RETURN FALSE
+        else{
+          return false;
+        }  
+    }
 
     useEffect(() => {
         console.log("book id is now ", id);
-        console.log("Book Info disabled is ", disableAdd);
         
-        let bookIndex = props.cart.findIndex(bookInCart => parseFloat(bookInCart.id) === parseFloat(book.id));
-        if(bookIndex > -1){
-            /*
-            if(parseFloat(props.cart[bookIndex].quantity) === parseFloat(5)){
-                console.log("Quantity is now 5");
-                setDisable(true);
-            }
-            console.log("Quantity is now 5");
-            setDisable(true);*/
-
-        }
-
+        
         //WHY DOES THIS NOT WORK IF USEEFFECT RUNS ON EVERY RENDER?
         //book = props.books.filter((book) => {return parseFloat(book.id) === parseFloat(id);});
-    }, [id, props.cart]);
+    }, [id]);
 
-    /*function addToCart(){
-        //Retrieves cart from local storage
-        let cart = JSON.parse(localStorage.getItem("cart"));
-        let bookInCart;
-        
-        
-        if(cart){
-            //If book is in the cart, update quantity
-            bookInCart = cart.findIndex(book => book.id === id);
-            if(bookInCart > 0){
-                cart[bookInCart].quantity += 1;
-            }
 
-            //If book is not in cart, add book to cart
-            else{
-                cart.push({id: id, quantity: 1});
-                localStorage.setItem("cart", JSON.stringify(cart));
-            }
-        }
-        //If cart is empty, add book to cart 
-        else{
-            let newCart = [{id: id, quantity: 1}];
-            localStorage.setItem("cart", JSON.stringify(newCart));
-        }
-    }*/
 
+    /* ADD BOOK TO CART: DEFAULT METHOD */
     function addBookToCart(book){
-        if(!props.cart.find(bookInCart => parseFloat(bookInCart.id) === parseFloat(book.id))){
-            props.addToCart(book);
-            setDisable(true);
-        }
+        props.addToCart(book);
     }
 
     return (
@@ -103,21 +81,15 @@ const BookInfo = (props) => {
                                             minus aliquid possimus? Aliquam nulla beatae exercitationem cum.
                                         </p>
                                         
-                                        {/*props.bookExists(book)? 
+                                        {// TOGGLE VIEW CART BUTTON: DEFAULT METHOD
+                                        bookExists(book)? 
                                             <Link to="/cart"><button className="btn">View Cart</button></Link>
                                             :
-                                            <button onClick={() => {props.addToCart(book)}} 
-                                            disabled={disableAdd} className="btn">Add to Cart</button>
-                                            
-                                        */}
-
-                                        {disableAdd? 
-                                            <Link to="/cart"><button className="btn">View Cart</button></Link>
-                                            :
-                                            <button onClick={() => {props.addToCart(book)}} 
-                                            disabled={disableAdd} className="btn">Add to Cart</button>
+                                            <button onClick={() => {addBookToCart(book)}} 
+                                             className="btn">Add to Cart</button>
                                             
                                         }
+                                        
                                         
                                     </div>
                                 </div>
@@ -131,7 +103,8 @@ const BookInfo = (props) => {
                                 <h2 className="book__selected--title--top">Recommended Books</h2>
                             </div>
                             <div className="books">
-                            {props.books
+                            {/*RECOMMENDED BOOKS SECTION */
+                            props.books
                                 .filter((book) => { return (parseFloat(book.id) !== parseFloat(props.id)) && (book.rating == 5); })
                                 .slice(0,4)
                                 .map((book) => {

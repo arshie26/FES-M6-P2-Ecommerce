@@ -1,60 +1,37 @@
 import React from 'react'
 import { books } from '../data.js';
 import Price from '../components/Price.jsx'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import EmptyCart from '../assets/empty_cart.svg'
+import { Link } from 'react-router-dom';
 
 const Cart = (props) => {
 
-    const [cart, updateCart] = useState(props.cart);
-    const [books, updateBooks] = useState(props.books);
-
-    let booksInfo;
-    let cartQuantity = 0;
-
     /*
-    WHY DOES THIS CAUSE INFINITE LOOP?
+
+    //WHY DOES THIS CAUSE INFINITE LOOP?
     updateCart(cart.map((book) => {
         if(book.total == undefined){
             book.total = "$0";
             return book;
         }
-    }));*/
+    }));
 
-    cartQuantity = 0;
+    */
 
-    useEffect(() => {
-        console.log("In Cart books ", cart);
-    }, [cart])
+    const total = useMemo(() => {
+        let price = 0;
+        props.cart.forEach((book) => {
+            price += parseFloat((book.salePrice || book.originalPrice)) * book.quantity;
+        });
+        return price;
+    }, [props.cart])
 
     
-    /*
-    function removeBook(id) {
-        let bookIndex = cart.findIndex(book => book.id == id);
-        let bookQuantity = cart[bookIndex].quantity;
-        if(bookQuantity == 1){
-            cart.splice(bookIndex, 1)
-            updateCart((prevCart) => {prevCart = cart})
-            localStorage.setItem("cart", JSON.stringify(cart));
-        }
-        else{
-            updateCart((prevCart) => {return prevCart[bookIndex].quantity -= 1;});
-            localStorage.setItem("cart", JSON.stringify(cart));
-            console.log("new cart: ", cart);
-        }
-    }*/
-
-    function total(event, price, id){
-        let bookIndex = cart.findIndex((book) => {return book.id == id});
-        let book = cart[bookIndex];
-        if(event.target.value == 0){
-            props.remove(book);
-        }
-        else{
-            cart[bookIndex].total = event.target.value * price;
-            cart[bookIndex].quantity = event.target.value;
-            updateBooks(cart.slice(0,));
-        }
-    }
+    useEffect(() => {
+        console.log("In Cart books ", props.cart);
+    
+    }, [])
 
     return (
 
@@ -73,9 +50,9 @@ const Cart = (props) => {
                                     <span className="cart__total">Total</span>
                                 </div>
                                 <div className="cart__body">
-                                    {cart.map((book) => {
+                                    {props.cart.map((book) => {
                                         return (
-                                            <div class="cart__item">
+                                            <div className="cart__item">
                                                 <div className="cart__book">
                                                     <img src={book.url} className="cart__book--img" />
 
@@ -87,42 +64,58 @@ const Cart = (props) => {
                                                             <span className="cart__book--price">{book.salePrice}</span>
                                                             : <span className="cart__book--price">{book.originalPrice}</span>}
                                                         <Price className="cart__book--price" originalPrice={book.originalPrice} salePrice={book.salePrice} />
-                                                        <button className="cart__book--remove" onClick={() => props.remove(book)}>Remove</button> 
+                                                        <button className="cart__book--remove" onClick={() => props.removeFromCart(book)}>Remove</button> 
                                                     </div>
                                                 </div>
                                                 
                                                 
                                                 <div className="cart__quantity">
-                                                    <input type="number" className="cart__input" min={0} max={99} 
-                                                    onChange={(event) => {book.salePrice? total(event, book.salePrice, book.id) : total(event, book.originalPrice, book.id)}} value={book.quantity} />
+                                                    <input  
+                                                        className="cart__input" 
+                                                        type="number"  
+                                                        min={0} 
+                                                        max={99} 
+                                                        value={book.quantity}
+                                                        onChange={(event) => { return props.updateCart(event.target.value, book) }}  
+                                                    />
                                                 </div>
                                                 
                                                 <div className="cart__total">
-                                                    ${book.total}
+                                                    ${book.salePrice? book.salePrice * book.quantity : book.originalPrice * book.quantity}
                                                 </div>
                                             </div>
                                         )
                                     })}
                                 </div>
+                                {props.cart.length === 0?
+                                    (<div className="cart__empty">
+                                        <img src={EmptyCart} className="cart__empty--img" />
+                                        <h2>You don't have any books</h2>
+                                        <Link to="/books"><button className="btn">Browse books</button></Link>
+                                    </div>) :
+                                    <></>
+                                }
+                                
                             </div>
-
+                            {props.cart.length && 
                             <div className="total">
                                 <div className="total__item total__sub--total">
                                     <span>Subtotal</span>
-                                    <span>$9.00</span>
+                                    <span>${(total * 0.9).toFixed(2)}</span>
                                 </div>
                                 <div className="total__item total__tax">
                                     <span>Tax</span>
-                                    <span>$1.00</span>
+                                    <span>${(total*0.1).toFixed(2)}</span>
                                 </div>
                                 <div className="total__item total__price">
                                     <span>Total</span>
-                                    <span>$1.00</span>
+                                    <span>${total.toFixed(2)}</span>
                                 </div>
                                 <button className="btn btn__checkout no-cursor">
                                     Proceed to checkout
                                 </button>
                             </div>
+                            }
                         </div>
                     </div>
                 </main>
