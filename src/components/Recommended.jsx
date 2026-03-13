@@ -9,7 +9,7 @@ const Recommended = (props) => {
                         .slice(0,4)
                         .map((book) => {
                             console.log("recommended", book.title);
-                            return <Book key={book.id} title={book.title} url={book.url} rating={book.rating}
+                            return <Book key={book.id} id={book.id} title={book.title} url={book.url} rating={book.rating}
                             originalPrice={book.originalPrice} salePrice={book.salePrice} />
                         })
                     }
