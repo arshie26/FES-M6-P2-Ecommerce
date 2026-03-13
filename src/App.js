@@ -95,6 +95,7 @@ function App() {
     let cartQuantity = 0;
     cart.map((book) => {
         cartQuantity += book.quantity;
+        return cartQuantity;
     })
     console.log("quantity is now ", cartQuantity);
     return cartQuantity;

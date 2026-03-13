@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom'
 import Rating from '../components/Rating.jsx';
 import Price from '../components/Price.jsx'
-import Book from '../components/Book.jsx'
 import Recommended from '../components/Recommended.jsx';
 
 const BookInfo = (props) => {
