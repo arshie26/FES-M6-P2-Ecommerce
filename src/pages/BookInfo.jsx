@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom'
@@ -60,7 +60,7 @@ const BookInfo = (props) => {
                             </div>
                             <div className="book__selected">
                                 <figure className="book__selected--figure">
-                                    <img className="book__selected--img" src={book.url} />
+                                    <img className="book__selected--img" src={book.url} alt=""/>
                                 </figure>
                                 <div className="book__selected--description">
                                     <h2 className="book__selected--title">{book.title}</h2>
@@ -104,14 +104,7 @@ const BookInfo = (props) => {
                             </div>
                             <div className="books">
                             {/*RECOMMENDED BOOKS SECTION */
-                            props.books
-                                .filter((book) => { return (parseFloat(book.id) !== parseFloat(props.id)) && (book.rating == 5); })
-                                .slice(0,4)
-                                .map((book) => {
-                                    return <Book key={book.id} title={book.title} url={book.url} rating={book.rating}
-                                    originalPrice={book.originalPrice} salePrice={book.salePrice} />
-                                })
-                            }
+                                <Recommended id={id} books={props.books} />}
                             </div>
                         </div>
                     </div>

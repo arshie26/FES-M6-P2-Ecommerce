@@ -5,7 +5,7 @@ import Nav from './components/Nav';
 import Cart from './pages/Cart.jsx'
 import Footer from './components/Footer';
 import { books } from './data.js'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
 
@@ -46,7 +46,7 @@ function App() {
   
   function updateCart(newQuantity, book){
 
-    if(newQuantity == 0){
+    if(newQuantity === 0){
         console.log("Input is now 0");
         return removeFromCart(book);
     }
@@ -77,8 +77,6 @@ function App() {
     
     //IF THE BOOK EXISTS IN THE CART...
     if(bookIndex > -1){
-      let originalBook = cart[bookIndex];
-
       
       //REMOVE THE BOOK ENTIRELY FROM THE CART
         cart.splice(bookIndex, 1);

@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="container">
                 <div className="row row__column">
                     <figure className="footer__logo">
-                        <img className="footer__logo--img" src={Logo} />
+                        <img className="footer__logo--img" src={Logo} alt="" />
                     </figure>
                     <p className="footer__copyright">&copy; Arsh Agarwl</p>
                     <div className="footer__list">

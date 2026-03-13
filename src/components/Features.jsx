@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { books } from '../data.js';
 import Book from './Book.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -47,7 +47,7 @@ const Features = () => {
         let stars = [];
         
         for(let i=rating; i > 0; i--){
-            if(rating == 0.5){
+            if(rating === 0.5){
                 return stars.push(<FontAwesomeIcon icon="star-half-alt" />);
             }
             stars.push(<FontAwesomeIcon icon="star" />);
@@ -66,7 +66,7 @@ const Features = () => {
                 <div className="row">
                     <div className="books">
                     {books
-                        .filter((book) => {return book.rating == 5;})
+                        .filter((book) => {return book.rating === 5;})
                         .slice(0,4)
                         .map((book) => {
                         return (

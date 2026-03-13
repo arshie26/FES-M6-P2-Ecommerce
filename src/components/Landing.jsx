@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import UndrawBooks from '../assets/Undraw_Books.svg';
 
 const Landing = () => {
@@ -14,7 +13,7 @@ const Landing = () => {
                             <button className="btn">Browse books</button>
                         </a>
                         <figure className="header__img--wrapper">
-                            <img src={UndrawBooks} />
+                            <img src={UndrawBooks} alt="" />
                         </figure>
                     </div>
                 </div>

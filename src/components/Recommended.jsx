@@ -5,7 +5,7 @@ const Recommended = (props) => {
     return (
         <>
                     {props.books
-                        .filter((book) => { return (parseFloat(book.id) !== parseFloat(props.id)) && (book.rating == 5); })
+                        .filter((book) => { return (parseFloat(book.id) !== parseFloat(props.id)) && (book.rating === 5); })
                         .slice(0,4)
                         .map((book) => {
                             console.log("recommended", book.title);

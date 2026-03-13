@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import Features from '../components/Features'
 import Book from '../components/Book.jsx';
-import { books } from '../data.js'
 import Filter from '../components/Filter.jsx'
 
 const Books = (props) => {
@@ -15,7 +13,7 @@ const Books = (props) => {
         console.log(newFilter);
         
         let newBooks;
-        if(newFilter == "LOW_TO_HIGH"){
+        if(newFilter === "LOW_TO_HIGH"){
             newBooks = books.slice().sort((a, b) => {
                 return (a.salePrice || a.originalPrice) - (b.salePrice || b.originalPrice)
             });
@@ -29,13 +27,13 @@ const Books = (props) => {
             });
             updateBooks((prevBooks) => prevBooks = newBooks);*/
         }
-        else if(newFilter == "HIGH_TO_LOW"){
+        else if(newFilter === "HIGH_TO_LOW"){
             newBooks = books.slice().sort((a, b) => {
                 return (b.salePrice || b.originalPrice)-(a.salePrice || a.originalPrice);
             });
             updateBooks(newBooks);
         }
-        else if(newFilter=="RATING"){
+        else if(newFilter==="RATING"){
             newBooks = books.slice().sort((a, b) => {
                 return b.rating-a.rating;
             })

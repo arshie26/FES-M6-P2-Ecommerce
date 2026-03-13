@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom'
 import { books } from '../data.js'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BookInfo from '../pages/BookInfo';
 import Rating from '../components/Rating.jsx';
 import Price from '../components/Price.jsx';

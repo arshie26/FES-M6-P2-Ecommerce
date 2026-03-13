@@ -1,7 +1,6 @@
 import React from 'react'
-import { books } from '../data.js';
 import Price from '../components/Price.jsx'
-import { useState, useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import EmptyCart from '../assets/empty_cart.svg'
 import { Link } from 'react-router-dom';
 
@@ -31,7 +30,7 @@ const Cart = (props) => {
     useEffect(() => {
         console.log("In Cart books ", props.cart);
     
-    }, [])
+    }, [props.cart])
 
     return (
 
@@ -54,7 +53,7 @@ const Cart = (props) => {
                                         return (
                                             <div className="cart__item">
                                                 <div className="cart__book">
-                                                    <img src={book.url} className="cart__book--img" />
+                                                    <img src={book.url} className="cart__book--img" alt=""/>
 
                                                     <div className="cart__book--info">
                                                         <span className="cart__book--title">
@@ -89,7 +88,7 @@ const Cart = (props) => {
                                 </div>
                                 {props.cart.length === 0?
                                     (<div className="cart__empty">
-                                        <img src={EmptyCart} className="cart__empty--img" />
+                                        <img src={EmptyCart} className="cart__empty--img" alt="" />
                                         <h2>You don't have any books</h2>
                                         <Link to="/books"><button className="btn">Browse books</button></Link>
                                     </div>) :
