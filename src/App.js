@@ -46,7 +46,7 @@ function App() {
   
   function updateCart(newQuantity, book){
 
-    if(newQuantity === 0){
+    if(parseFloat(newQuantity) === 0){
         console.log("Input is now 0");
         return removeFromCart(book);
     }
