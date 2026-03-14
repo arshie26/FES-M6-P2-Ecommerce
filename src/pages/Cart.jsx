@@ -8,10 +8,7 @@ const Cart = (props) => {
 
     const [cart, updateCart] = useState(props.cart);
 
-    //WHY DOES THIS CAUSE INFINITE LOOP?
-    updateCart(cart.map((book) => {
-        return {...book, total: 0}
-    }));
+    
 
     
 
@@ -26,8 +23,12 @@ const Cart = (props) => {
     
     useEffect(() => {
         //console.log("In Cart books ", props.cart);
-    
-    }, [props.cart])
+        //WHY DOES THIS CAUSE INFINITE LOOP?
+        updateCart(cart.map((book) => {
+            console.log("Updating cart");
+            return {...book, total: 0}
+        }));
+    }, [])
 
     return (
 
