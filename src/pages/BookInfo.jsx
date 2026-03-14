@@ -28,11 +28,6 @@ const BookInfo = (props) => {
         }  
     }
 
-    function chooseBook(){
-        console.log("in choose book");
-        
-    }
-
     useEffect(() => {
         console.log("book id is now ", id);
         
