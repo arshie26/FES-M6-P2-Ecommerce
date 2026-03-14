@@ -8,7 +8,6 @@ const Recommended = (props) => {
                         .filter((book) => { return (parseFloat(book.id) !== parseFloat(props.id)) && (book.rating === 5); })
                         .slice(0,4)
                         .map((book) => {
-                            console.log("recommended", book.title);
                             return <Book key={book.id} id={book.id} title={book.title} url={book.url} rating={book.rating}
                             originalPrice={book.originalPrice} salePrice={book.salePrice} />
                         })

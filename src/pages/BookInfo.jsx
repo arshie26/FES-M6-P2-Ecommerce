@@ -28,13 +28,19 @@ const BookInfo = (props) => {
         }  
     }
 
+    function chooseBook(){
+        console.log("in choose book");
+        
+    }
+
     useEffect(() => {
         console.log("book id is now ", id);
         
         
         //WHY DOES THIS NOT WORK IF USEEFFECT RUNS ON EVERY RENDER?
         //book = props.books.filter((book) => {return parseFloat(book.id) === parseFloat(id);});
-    }, [id]);
+        
+    });
 
 
 

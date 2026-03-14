@@ -16,42 +16,36 @@ function App() {
   /*********************************** */
   /* ADDS BOOK TO CART: DEFAULT METHOD */
   function addToCart(book){
+    
+    //console.log("In add to cart ", book);
 
     // MAKES SURE BOOK IS OBJECT, NOT ARRAY WITH OBJECT
     if(book[0]){
       book = book[0];
     }
-
-    console.log("In add to cart ", book);
     
-    /* IF IT'S NOT IN THE CART, USE SPREAD OPERATOR TO ADD TO CART */
-    if(book.salePrice){
-      setCart([...cart, 
-        {...book, 
-        quantity: 1}]);
-      
-    }
-    else{
-      setCart([...cart, 
-        {...book, 
-        quantity: 1}]);
-      
-    }
-      
-    
+    // IF IT'S NOT IN THE CART, USE SPREAD OPERATOR TO ADD TO CART
+    setCart([...cart, 
+      {...book, 
+      quantity: 1}]);
       
   }
 
 
-  
+  /* UPDATE CART: DEFAULT METHOD 
+  UPDATES BOOK IN CART WITH NEW BOOK QUANTITY 
+  QUANTITY COMES FROM CART PAGE*/
   function updateCart(newQuantity, book){
 
+    // IF THE NEW QUNTITY IS ZERO, 
+    //SEND BOOK TO REMOVEFROMCART METHOD
     if(parseFloat(newQuantity) === 0){
         console.log("Input is now 0");
         return removeFromCart(book);
     }
     
-    //UPDATE BOOK WITH NEW QUANTITY
+    // OTHERWISE, UPDATE BOOK WITH NEW QUANTITY 
+    //USE SPREAD OPERATOR TO UPDATE QUANTITY
     setCart(cart.map((bookInCart) => {
       
       if (parseFloat(bookInCart.id) === parseFloat(book.id)) {
@@ -79,8 +73,8 @@ function App() {
     if(bookIndex > -1){
       
       //REMOVE THE BOOK ENTIRELY FROM THE CART
-        cart.splice(bookIndex, 1);
-        setCart(cart.slice(0,));
+      cart.splice(bookIndex, 1);
+      setCart(cart.slice(0,));
     }
 
   }
@@ -91,13 +85,18 @@ function App() {
     
   }, [])
   
+  /* UPDATES CART QUANTITY IN NAV BAR */
+  /* CALLED FROM NAV */
   const quantity = () => {
     let cartQuantity = 0;
+    
+    //CYCLES THROUGH BOOKS SUMMATING CART QUANTITY
     cart.map((book) => {
         cartQuantity += book.quantity;
         return cartQuantity;
     })
-    console.log("quantity is now ", cartQuantity);
+
+    //RETURNS CART QUANTITY
     return cartQuantity;
   }
   

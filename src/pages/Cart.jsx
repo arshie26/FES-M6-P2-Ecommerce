@@ -1,22 +1,19 @@
 import React from 'react'
 import Price from '../components/Price.jsx'
-import { useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import EmptyCart from '../assets/empty_cart.svg'
 import { Link } from 'react-router-dom';
 
 const Cart = (props) => {
 
-    /*
+    const [cart, updateCart] = useState(props.cart);
 
     //WHY DOES THIS CAUSE INFINITE LOOP?
     updateCart(cart.map((book) => {
-        if(book.total == undefined){
-            book.total = "$0";
-            return book;
-        }
+        return {...book, total: 0}
     }));
 
-    */
+    
 
     const total = useMemo(() => {
         let price = 0;
@@ -28,7 +25,7 @@ const Cart = (props) => {
 
     
     useEffect(() => {
-        console.log("In Cart books ", props.cart);
+        //console.log("In Cart books ", props.cart);
     
     }, [props.cart])
 
