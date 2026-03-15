@@ -8,9 +8,9 @@ import Recommended from '../components/Recommended.jsx';
 
 const BookInfo = (props) => {
     const { id } = useParams();
+    const book = props.books.find((book) => {return parseFloat(book.id) === parseFloat(id);});
     
-    let book;// = props.books.find((book) => {return parseFloat(book.id) === parseFloat(id)});
-
+    
     /***************************************** */
     /* TOGGLE VIEW CART BUTTON: DEFAULT METHOD */
     function bookExists(book){
@@ -31,12 +31,7 @@ const BookInfo = (props) => {
     useEffect(() => {
         console.log("book id is now ", id);
         
-        
-        //WHY DOES THIS NOT WORK IF USEEFFECT RUNS ON EVERY RENDER?
-        //book = props.books.filter((book) => {return parseFloat(book.id) === parseFloat(id);});
-        book = props.books.filter((book) => {return parseFloat(book.id) === parseFloat(id);});
-        
-    });
+    }, []);
 
 
 

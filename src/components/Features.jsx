@@ -4,44 +4,6 @@ import Book from './Book.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Features = () => {
-    
-    /*let [images, updateImages] = useState([]);
-
-    async function getImage(id, url){
-        
-        let imageCall = await axios(url);
-        
-        return imageCall.data;
-
-        /* STATE UPDATE ATTEMPT */
-        /*updateImages((prevState) => ([
-            ...prevState,
-            {
-                id: id,
-                image: imageCall.data
-            }
-        ]));
-        console.log("images is now ", images);
-        */
-
-        /* BASE 64 CONVERSION ATTEMPT */
-        /*const base64 = btoa(
-            new Uint8Array(imageCall.data).reduce(
-              (data, byte) => data + String.fromCharCode(byte),
-              ''
-            )
-          )
-        console.log("getIMage base6", base64);
-        return base64;*/
-
-    /*}*/
-
-    /*let image;
-    getImage(book.id, book.url).then((data) => {
-        image = data.value;
-        console.log(image);
-    });
-    console.log(image);*/
 
     function createRating(rating){   
         let stars = [];
@@ -54,11 +16,6 @@ const Features = () => {
         }
         return stars;
     }
-    /* FILTER AND SORT SEPARATELY FROM MAP AND PRINT LOCATION */
-    /*let fiveStarBooks = books.filter((book) => {
-        return book.rating == 5;
-    }).slice(0,4);
-    books.sort((a, b) => {return b.rating - a.rating});*/
     
     return(
         <section id="features">

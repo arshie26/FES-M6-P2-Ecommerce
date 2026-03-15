@@ -18,13 +18,8 @@ function App() {
   function addToCart(book){
     
     //console.log("In add to cart ", book);
-
-    // MAKES SURE BOOK IS OBJECT, NOT ARRAY WITH OBJECT
-    if(book[0]){
-      book = book[0];
-    }
     
-    // IF IT'S NOT IN THE CART, USE SPREAD OPERATOR TO ADD TO CART
+    // USE SPREAD OPERATOR TO ADD TO CART
     setCart([...cart, 
       {...book, 
       quantity: 1}]);

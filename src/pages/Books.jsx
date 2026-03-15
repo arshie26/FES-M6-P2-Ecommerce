@@ -58,7 +58,7 @@ const Books = (props) => {
                             <div className="books">
                                 {books.map((book) => {
                                     return (
-                                        <Book title={book.title} url={book.url} originalPrice={book.originalPrice}
+                                        <Book key={book.id} title={book.title} url={book.url} originalPrice={book.originalPrice}
                                         salePrice={book.salePrice} rating={book.rating} id={book.id} /> 
                                     )
                                 })}

@@ -6,10 +6,6 @@ import { Link } from 'react-router-dom';
 
 const Cart = (props) => {
 
-    const [cart, updateCart] = useState(props.cart);
-
-    
-
     
 
     const total = useMemo(() => {
@@ -21,14 +17,6 @@ const Cart = (props) => {
     }, [props.cart])
 
     
-    useEffect(() => {
-        //console.log("In Cart books ", props.cart);
-        //WHY DOES THIS CAUSE INFINITE LOOP?
-        updateCart(cart.map((book) => {
-            console.log("Updating cart");
-            return {...book, total: 0}
-        }));
-    }, [])
 
     return (
 
@@ -49,7 +37,7 @@ const Cart = (props) => {
                                 <div className="cart__body">
                                     {props.cart.map((book) => {
                                         return (
-                                            <div className="cart__item">
+                                            <div key={book.id} className="cart__item">
                                                 <div className="cart__book">
                                                     <img src={book.url} className="cart__book--img" alt=""/>
 

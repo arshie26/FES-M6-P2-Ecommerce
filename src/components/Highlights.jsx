@@ -31,7 +31,7 @@ const Highlights = () => {
                     <div className="highlight__wrapper">
                         {highlightList.map((highlight) => {
                             return (
-                                <Highlight image={highlight.image} title={highlight.title} description={highlight.description} />
+                                <Highlight key={highlight.title} image={highlight.image} title={highlight.title} description={highlight.description} />
                             );
                             })
                         }
