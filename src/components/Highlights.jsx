@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Highlights = () => {
     
+    /* LIST OF ALL HIGHLIGHTS */
     const highlightList = 
     [{
         image: <FontAwesomeIcon icon="bolt" />,
@@ -29,7 +30,8 @@ const Highlights = () => {
                         Why Choose <span className="purple">Library</span>
                     </h2>
                     <div className="highlight__wrapper">
-                        {highlightList.map((highlight) => {
+                        {/* CYCLES THROUGH HIGHLIGHTS AND DISPLAYS THEM */
+                        highlightList.map((highlight) => {
                             return (
                                 <Highlight key={highlight.title} image={highlight.image} title={highlight.title} description={highlight.description} />
                             );

@@ -4,9 +4,9 @@ import BookInfo from './pages/BookInfo.jsx';
 import Nav from './components/Nav';
 import Cart from './pages/Cart.jsx'
 import Footer from './components/Footer';
-import { books } from './data.js'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import { books } from './data.js'
 
 
 function App() {

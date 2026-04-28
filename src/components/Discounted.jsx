@@ -8,7 +8,8 @@ const Discounted = () => {
             <div className="container">
                 <div className="row">
                     <div className="books">
-                        {books
+                        {/* SELECTS 8 BOOKS WITH A VALID SALE PRICE AND LISTS THEM */
+                        books
                             .filter((book) => {return book.salePrice != null})
                             .slice(0, 8)
                             .map((book) => {

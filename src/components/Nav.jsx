@@ -38,7 +38,8 @@ const Nav = (props) => {
                     <Link to="/cart" className="nav__link">
                         <FontAwesomeIcon icon="shopping-cart" />
                     </Link>
-                    {props.quantity > 0 && <span className="cart__length">{props.quantity}</span>}
+                    {/* IF THERE ARE ITEMS IN THE CART, THE QUANTITY ICON DISPLAYS */
+                    props.quantity > 0 && <span className="cart__length">{props.quantity}</span>}
                 </li>
             </ul>
             <div className="menu__backdrop">

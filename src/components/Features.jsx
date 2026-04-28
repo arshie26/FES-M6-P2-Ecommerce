@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Features = () => {
 
+    /* CONVERTS NUMBER RATING TO RATING IN STARS  */
     function createRating(rating){   
         let stars = [];
         
@@ -22,7 +23,8 @@ const Features = () => {
             <div className="container">
                 <div className="row">
                     <div className="books">
-                    {books
+                    {/* GETS 4 5-STAR BOOKS TO LIST AS FEATURED BOOKS */
+                    books
                         .filter((book) => {return book.rating === 5;})
                         .slice(0,4)
                         .map((book) => {

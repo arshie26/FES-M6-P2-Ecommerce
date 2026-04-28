@@ -7,7 +7,8 @@ import { Link } from 'react-router-dom';
 const Cart = (props) => {
 
     
-
+    /* USED TO CALCULATE TOTAL PRICE
+    OF ALL BOOKS IN CART */
     const total = useMemo(() => {
         let price = 0;
         props.cart.forEach((book) => {
@@ -35,7 +36,8 @@ const Cart = (props) => {
                                     <span className="cart__total">Total</span>
                                 </div>
                                 <div className="cart__body">
-                                    {props.cart.map((book) => {
+                                    {/* DISPLAYS EACH BOOK IN THE CART */
+                                    props.cart.map((book) => {
                                         return (
                                             <div key={book.id} className="cart__item">
                                                 <div className="cart__book">
@@ -61,7 +63,10 @@ const Cart = (props) => {
                                                         min={0} 
                                                         max={99} 
                                                         value={book.quantity}
-                                                        onChange={(event) => { return props.updateCart(event.target.value, book) }}  
+                                                        onChange={/*CALLS UPDATE CART IN APP (PARENT) WITH NEW 
+                                                                    QUANTITY WHICH UPDATES STATE, WHICH RERENDERS 
+                                                                    COMPONENT WITH NEW QUANITY*/
+                                                                    (event) => { return props.updateCart(event.target.value, book) }}  
                                                     />
                                                 </div>
                                                 
@@ -72,7 +77,8 @@ const Cart = (props) => {
                                         )
                                     })}
                                 </div>
-                                {props.cart.length === 0?
+                                {/* IF CART IS EMPTY, DISPLAY EMPTY CART IMAGE */
+                                props.cart.length === 0?
                                     (<div className="cart__empty">
                                         <img src={EmptyCart} className="cart__empty--img" alt="" />
                                         <h2>You don't have any books</h2>
@@ -82,7 +88,8 @@ const Cart = (props) => {
                                 }
                                 
                             </div>
-                            {props.cart.length && 
+                            { /* DISPLAYS TOTAL PRICE */
+                            props.cart.length && 
                             <div className="total">
                                 <div className="total__item total__sub--total">
                                     <span>Subtotal</span>

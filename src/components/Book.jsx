@@ -7,10 +7,16 @@ import Price from '../components/Price.jsx';
 
 const Book = (props) => {
 
+    /* STATE VARIABLE FOR IMAGE */
     const [img, setImage] = useState();
 
     const mountedRef = useRef(true);
 
+    /* ON MOUNT, CREATES A NEW IMAGE ELEMENT
+        (WITH SRC ASSIGNED) THAT WAITS TO
+        LOAD THE IMAGE FOR 300 MS SO
+        SKELETON LOADING STATE IS VISIBLE
+        IMAGE IS LOADED USING STATE VARIABLE */
     useEffect(() => {
         const image = new Image();
         image.src = props.url;
@@ -30,7 +36,8 @@ const Book = (props) => {
 
     return (  
         <div key={props.id} className="book">
-            {img? 
+            {/* DISPLAY IMAGE WHEN IT LOADS, OTHERWISE DISPLAY SKELETON STATE */
+            img? 
                 (<>
                     <div className="book__img--wrapper">
                     <Link to={`/books/${props.id}`}  className="book__title--link">
